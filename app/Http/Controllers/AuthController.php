@@ -4,19 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class AuthController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = [
-            'username' => 'Abiyyu',
-            'last_login' => date('Y-m-d H:i:s'),
-            'list_pendidikan' => ['SD', 'SMP', 'SMA', 'S1', 'S2', 'S3']
-        ];
-        return view('home', $data);
+        return view('login-form');
     }
 
     /**
@@ -67,25 +62,25 @@ class HomeController extends Controller
         //
     }
 
-    public function signup(Request $request)
-    {
+    public function login(Request $request){
         $request->validate([
-            'name'  => 'required|max:10',
-		    'email' => ['required','email'],
+            'username'  => 'required|max:10',
 		    'password' => [
 		        'required',
 		        'string',
-		        'min:8',
+		        'min:3',
 		        'regex:/[a-z]/',
 		        'regex:/[A-Z]/',
-		        'regex:/[0-9]/',
 		    ],
         ]);
-
-        $pageData['name']     = $request->name;
-        $pageData['email']    = $request->email;
-        $pageData['password'] = $request->password;
-        return view('signup-success', $pageData);
+        if ($request->username == "2455301206"){
+            $pageData['pesanSukses'] = "Selamat, anda telah berhasil login!";
+            $pageData['username'] = $request->username;
+            $pageData['password'] = $request->password;
+            return view('login-form', $pageData);
+        } else {
+            $pageData['pesanError'] = "Username atau Password salah!";
+            return view('login-form', $pageData);
+        }
     }
 }
-
