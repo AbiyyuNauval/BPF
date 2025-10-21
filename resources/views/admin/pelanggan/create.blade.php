@@ -338,7 +338,8 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Pelanggan</li>
+                        <li class="breadcrumb-item"><a href="{{ route('pelanggan.list') }}">Pelanggan</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Tambah Data</li>
                     </ol>
                 </nav>
                 <h2 class="h4">Tambah Data Pelanggan</h2>
