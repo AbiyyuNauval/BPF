@@ -79,6 +79,13 @@
                     {{$pesanSukses}}
                 @endif
             @endif
+
+            @if (session('info'))
+                <div class="alert alert-info">
+                    {{session('info')}}
+                </div>
+            @endif
+
             <div class="card login-card">
                 <div class="card-header">
                     <h3>Welcome Back</h3>

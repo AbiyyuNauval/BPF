@@ -77,15 +77,21 @@
         </div>
     </nav>
 
+    @if (session('info'))
+        <div class="alert alert-info">
+            {{session('info')}}
+        </div>
+    @endif
+
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
-            <h1 class="display-6 mb-2">{{$username}}</h1>
-            <p>{{$last_login}}</p>
-            List Pendidikan:
+            <h1 class="display-6 mb-2">Abiyyu Nauval Sugiarto</h1>
+            <p></p>
+            {{-- List Pendidikan:
             @foreach ($list_pendidikan as $i)
                 {{$i}}
-            @endforeach
+            @endforeach --}}
         </div>
     </section>
 
@@ -99,6 +105,18 @@
                         <h5 class="card-title">About Our Application</h5>
                         <p class="card-text">Our application provides a clean and intuitive interface, allowing users to navigate easily and perform tasks efficiently. Built with Laravel and Bootstrap, it offers flexibility and responsiveness.</p>
                         <a href="#" class="btn btn-primary">Explore More</a>
+                    </div>
+                </div>
+
+                {{-- Tombol Redirect --}}
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="h5 mb-3">Redirect Buttons</h3>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href = "{{ route('go', 'home')}}"><button class="btn btn-primary">Home</button></a>
+                            <a href = "{{ route('go', 'belanja')}}"><button class="btn btn-secondary">E-Commerce</button></a>
+                            <a href = "{{ route('go', 'login')}}"><button class="btn btn-outline-primary">Login</button></a>
+                        </div>
                     </div>
                 </div>
 

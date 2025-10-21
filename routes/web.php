@@ -5,8 +5,12 @@ use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 
-Route::get('/home', [HomeController::class, 'show']);
+// Route::get('/home', [HomeController::class, 'show'])->name('home');
+Route::get('/', function(){
+    return view('home');
+})->name('home');
 
 Route::get('/pcr', function() {
     return 'Selamat datang di PCR!';
@@ -37,6 +41,13 @@ Route::post('/home/signup', [HomeController::class, 'signup']);
 
 Route::get('/auth', function(){
     return view('login-form');
-});
+})->name('login-form');
 
 Route::post('/auth/login', [AuthController::class, 'login']);
+
+Route::get('/go/{tujuan}', [HomeController::class, 'redirectTo'])->name('go');
+
+Route::get('/auth/register', [AuthController::class, 'showRegister'])->name('showRegister');
+Route::post('/auth/register', [AuthController::class, 'register'])->name('register');
+
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');

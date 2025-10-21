@@ -38,9 +38,9 @@ class HomeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        return view('home');
     }
 
     /**
@@ -86,6 +86,18 @@ class HomeController extends Controller
         $pageData['email']    = $request->email;
         $pageData['password'] = $request->password;
         return view('signup-success', $pageData);
+    }
+
+    public function redirectTo($tujuan){
+        $tujuan = strtolower($tujuan);
+        // return($tujuan);
+        if ($tujuan == 'login'){
+            return redirect()->route('login-form');
+        } else if ($tujuan == 'belanja'){
+            return redirect()->away('https://www.tokopedia.com');
+        } else if ($tujuan == 'home'){
+            return redirect()->route('home')->with('info', 'Selamat Datang!');
+        }
     }
 }
 

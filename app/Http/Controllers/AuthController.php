@@ -62,6 +62,34 @@ class AuthController extends Controller
         //
     }
 
+    public function showRegister(){
+        return view('register-form');
+    }
+
+    public function register(Request $request){
+        $request->validate([
+            'name' => [
+                'required',
+                'regex:/[a-z]/',
+                'regex:/[A-Z]/',
+            ],
+            'username' => 'required',
+            'alamat' => 'required | max:300',
+            'tglLahir' => 'required | date',
+            'password' => [
+                'required',
+                'string',
+                'min: 5',
+                'regex:/[a-z]/',
+		        'regex:/[A-Z]/',
+                'regex:/[1-9]/',
+                'confirmed',
+            ],
+        ]);
+
+        return redirect()->route('login-form')->with('info', 'Register Berhasil!');
+    }
+
     public function login(Request $request){
         $request->validate([
             'username'  => 'required|max:10',
@@ -73,11 +101,11 @@ class AuthController extends Controller
 		        'regex:/[A-Z]/',
 		    ],
         ]);
-        if ($request->username == "2455301206"){
+        if ($request->username == "2455301002"){
             $pageData['pesanSukses'] = "Selamat, anda telah berhasil login!";
             $pageData['username'] = $request->username;
             $pageData['password'] = $request->password;
-            return view('login-form', $pageData);
+            return redirect()->to('home')->with('info', 'Berhasil Login!');
         } else {
             $pageData['pesanError'] = "Username atau Password salah!";
             return view('login-form', $pageData);
